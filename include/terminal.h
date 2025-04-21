@@ -1,10 +1,5 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include <unistd.h> 
-#include <sys/wait.h>  
-#include <stdexcept>
-#include "mypipe.h" 
+#include "mypipe.h"
 #include "utility.h"
 
 // terminal.h
