@@ -4,7 +4,6 @@
 int run_cmd(std::vector<char*> argv)
 {
     mypipe pipe;
-
     auto pid = fork();
 
     if (pid == -1){
@@ -13,6 +12,7 @@ int run_cmd(std::vector<char*> argv)
     }
 
     if (pid == 0) {
+        pipe.redirect();
         std::cout << "\n[child] PID = " << getpid();
         std::cout <<" -execvp\n" << std::flush;
         execvp(argv[0], argv.data());
@@ -26,6 +26,9 @@ int run_cmd(std::vector<char*> argv)
         perror("waitpid failed");
         return -1;
     }
+
+    auto output = pipe.read();
+    std::cout << "Captured Output: " << output << std::endl;
     return status;
 
 }
@@ -33,7 +36,6 @@ int run_cmd(std::vector<char*> argv)
 void terminal_app()
 {
     std::string input;
-    mypipe pipe;
     while (true)
     {
         std::cout << "command: ";
