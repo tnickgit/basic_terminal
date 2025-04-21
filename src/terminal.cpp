@@ -46,6 +46,7 @@ void terminal_app()
         }
         if (input.empty())
         {
+            std::cerr << "Error: No command provided\n";
             continue;
         }
         
