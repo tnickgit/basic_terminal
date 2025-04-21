@@ -20,7 +20,7 @@ void mypipe::redirect(){
 }  
 
 std::string mypipe::read(){
-    std::array<char, 512> buf;
+    std::array<char, 512> buf{};
     std::size_t bytes;
     bytes = ::read(fd[0], buf.data(), buf.size());
 
